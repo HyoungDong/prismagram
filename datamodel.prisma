@@ -1,7 +1,7 @@
 type User {
   id: ID! @id
-  username: String!
-  email : String!
+  username: String! @unique
+  email : String! @unique
   firstName: String @default(value:"")
   lastName:String
   posts: [Post!]! @relation(name: "PostsOfUser", onDelete: CASCADE)
@@ -11,7 +11,7 @@ type User {
   followers: [User!]! @relation(name: "FollowRelation")
   following: [User!]! @relation(name: "FollowRelation")
   rooms : [Room!]!
-  loginSecret: String!
+  loginSecret: String
 }
 
 type Post{
