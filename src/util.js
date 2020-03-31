@@ -1,8 +1,9 @@
-import dotenv from "dotenv"
-import path from "path"
-import { adjectives, nouns } from "./words"
-import nodemailer from "nodemailer"
-import mg from "nodemailer-mailgun-transport"
+import dotenv from "dotenv";
+import path from "path";
+import { adjectives, nouns } from "./words";
+import nodemailer from "nodemailer";
+import mg from "nodemailer-mailgun-transport";
+import jwt from "jsonwebtoken";
 
 dotenv.config({ path: path.resolve(__dirname, ".env") })
 export const GenerateSecret = () =>{
@@ -37,3 +38,5 @@ export const sendSecretMail = (address,secret)  =>{
      }
      return sendMail(email);
 }
+
+export const GenerateToken =(id) =>jwt.sign({id},process.env.JWT_SECRET);
